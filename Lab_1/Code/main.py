@@ -66,6 +66,8 @@ def printMatrix(_matrix):
             print(_matrix[name][index], end=' ')
         print()
 
+
+
 first_data = {
     'A1': [3, 7, 2, 9],
     'A2': [8, 3, 6, 7],
@@ -75,12 +77,10 @@ first_data = {
 
 first_weight = [8, 9, 6, 7]
 
-#matrix = calcImportanceMatrix(first_data, first_weight)
-
 answer_task1 = maximize(calcAlternativeUtility(first_data, first_weight))
 
 print('Task 1')
-print(answer_task1[0], ' - ', answer_task1[1])
+print('ANSWER: ', answer_task1[0], ' - ', answer_task1[1])
 
 second_data = {
     'A1': [85, 30, 22, 0.65, 6],
@@ -96,4 +96,4 @@ normalized_matrix = normalize(second_data)
 answer_task2 = maximize(calcAlternativeUtility(normalized_matrix, second_weight))
 
 print('Task2')
-print(answer_task2[0], ' - ', answer_task2[1])
+print('ANSWER: ', answer_task2[0], ' - ', answer_task2[1])

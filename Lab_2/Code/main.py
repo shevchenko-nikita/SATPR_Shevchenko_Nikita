@@ -1,7 +1,7 @@
 import numpy as np
 
 def readFile(name):
-    return np.loadtxt(name, delimiter=";", dtype=float)
+    return np.loadtxt(name, delimiter = ";", dtype = float)
 
 def getAveragePrirityValue(matrix):
     W = {}
@@ -14,9 +14,9 @@ def getAveragePrirityValue(matrix):
 
 def getNormalizeVec(W):
     Wnormalize = {}
-    _sum = 0
-    for value in W:
-        _sum += value
+    _sum = 0.
+    for index, row in enumerate(W):
+        _sum += W[index]
     for index, row in enumerate(W):
         Wnormalize[index] = W[index] / _sum
     return Wnormalize
@@ -26,20 +26,30 @@ def getMO(MergedWnorm):
     for i, row in enumerate(MergedWnorm):
         mul = 1
         for j, value in enumerate(MergedWnorm[i]):
-            mul *= MergedWnorm[i][j]
+            mul *= MergedWnorm[j][i]
         MO[i] = mul ** (1. / len(MergedWnorm[i]))
     return MO
 
-x = readFile("Labb.csv")
+def ff(id):
+    y = {}
+    y[0] = x[id + 0]
+    y[1] = x[id + 1]
+    y[2] = x[id + 2]
+    z = getAveragePrirityValue(y)
+    #print(z)
+    #print(getNormalizeVec(z))
+    return getNormalizeVec(z)
 
-y = {}
+x = readFile("1.csv")
 
-y[0] = x[0]
-y[1] = x[1]
-y[2] = x[2]
+MergedWnorm = []
 
-z = getAveragePrirityValue(y)
+MergedWnorm.append(ff(0))
+MergedWnorm.append(ff(3))
+MergedWnorm.append(ff(6))
 
-print(z)
+#print(MergedWnorm)
 
-print(getNormalizeVec(z))
+print(getMO(MergedWnorm))
+
+
